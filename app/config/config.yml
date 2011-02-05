@@ -1,0 +1,60 @@
+app.config:
+    charset:       UTF-8
+    error_handler: null
+    csrf_protection:
+        enabled: true
+        secret: xxxxxxxxxx
+    router:        { resource: "%kernel.root_dir%/config/routing.yml" }
+    validation:    { enabled: true, annotations: true }
+    templating:    { engines: ['twig'] } #assets_version: SomeVersionScheme
+    session:
+        default_locale: en
+        lifetime:       3600
+        auto_start:     true
+
+security.config:
+    encoders:
+        Symfony\Component\Security\Core\User\AccountInterface: plaintext
+    providers:
+        main:
+            password_encoder: sha1
+            users:
+                admin: { password: demo, roles: ROLE_USER }
+
+    firewalls:
+        main:
+            pattern:    ^.*$
+            form-login: true
+            anonymous: true
+            logout: true
+
+    access_control:
+        - { path: /hello/.*, role: ROLE_USER }
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+   
+# Twig Configuration
+twig.config:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+## Doctrine Configuration
+#doctrine.dbal:
+#    dbname:   xxxxxxxx
+#    user:     xxxxxxxx
+#    password: ~
+#    logging:  %kernel.debug%
+#doctrine.orm:
+#    auto_generate_proxy_classes: %kernel.debug%
+#    mappings:
+#        HelloBundle: ~
+
+## Swiftmailer Configuration
+#swiftmailer.config:
+#    transport:  smtp
+#    encryption: ssl
+#    auth_mode:  login
+#    host:       smtp.gmail.com
+#    username:   xxxxxxxx
+#    password:   xxxxxxxx
+
+     

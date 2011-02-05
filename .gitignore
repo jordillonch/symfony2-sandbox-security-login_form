@@ -1,0 +1,4 @@
+app/cache/*
+!app/cache/.symfony
+app/logs/*
+!app/logs/.symfony
